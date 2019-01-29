@@ -3,9 +3,11 @@ from bs4 import BeautifulSoup
 import lxml.html as lh
 import pandas as pd
 
+username = input("Enter UserName : ")
+password = input("Enter Password : ")
 url = "http://oas.iitmandi.ac.in/student/"
-login_data = {'txtUserName' : 'b18048', 
-              'txtPassword' : 'Ashwin@2105',
+login_data = {'txtUserName' : username, 
+              'txtPassword' : password,
               'Login' : 'Login',
               }
 
