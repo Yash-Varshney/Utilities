@@ -39,6 +39,7 @@ def Get_Grade_Score(x):
     elif x == "I":
         return -1
 
+
 # creating session
 with requests.Session() as s:
     # loging-in
@@ -47,9 +48,9 @@ with requests.Session() as s:
     login_data["ScriptManager1_HiddenField"] = login_soup.find(
         "input", attrs={"name": "ScriptManager1_HiddenField"}
     )["value"]
-    login_data["__VIEWSTATE"] = login_soup.find(
-            "input", attrs={"name": "__VIEWSTATE"}
-            )["value"]
+    login_data["__VIEWSTATE"] = login_soup.find("input", attrs={"name": "__VIEWSTATE"})[
+        "value"
+    ]
     main_page = s.post(url, data=login_data)
 
     # getting result form ready to post
@@ -58,18 +59,18 @@ with requests.Session() as s:
     result_data["__VIEWSTATE"] = result_soup.find(
         "input", attrs={"name": "__VIEWSTATE"}
     )["value"]
-    
+
     # select semester whose sgpa is to be calculated
     option_list = result_soup.find_all("option")
     for option in option_list:
-        if(option['value'] != '-Select-'):
-            semester_options.append(option['value'])
+        if option["value"] != "-Select-":
+            semester_options.append(option["value"])
     for i in range(len(semester_options)):
-        print("%d. %s" %(i+1,semester_options[i]))
+        print("%d. %s" % (i + 1, semester_options[i]))
     x = int(input("Select Semester : "))
-    while(x<=0 or x>len(semester_options)):
+    while x <= 0 or x > len(semester_options):
         x = int(input("Enter a valid option : "))
-    result_data["ctl00$MainContent$ddlPeriod"] = semester_options[x-1]
+    result_data["ctl00$MainContent$ddlPeriod"] = semester_options[x - 1]
     result_page = s.post(result_page_url, result_data)
 
     # scraping data
@@ -106,14 +107,14 @@ df["Course No"] = col_Course_No
 df["Course Name"] = col_Course_name
 df["Grade"] = col_Grades
 df["Credits"] = col_Course_Credit
-print("\nName : %s\nRoll : %s\nCourse : %s\n" % (Student_Name, Student_Roll, Student_Course))
+print(
+    "\nName : %s\nRoll : %s\nCourse : %s\n"
+    % (Student_Name, Student_Roll, Student_Course)
+)
 print(df)
 sumation = 0
 total_credits = 0
 for index, row in df.iterrows():
     sumation += Get_Grade_Score(row["Grade"]) * int(row["Credits"])
     total_credits += int(row["Credits"])
-print(
-    "\nYour SGPA for Semester %s is %f"
-    % (Semester, sumation / total_credits)
-)
+print("\nYour SGPA for Semester %s is %f" % (Semester, sumation / total_credits))
