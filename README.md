@@ -10,6 +10,8 @@ pip3 install lxml
 pip3 install pandas
 pip3 install getpass
 pip3 install threading
+pip3 install sys
+pip3 install time
 ```
 
 # Run

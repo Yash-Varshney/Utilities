@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import lxml.html as lh
 import pandas as pd
 import getpass
-import threading as th
 
 # initial variables
 username = input("Enter Roll Number : ")
