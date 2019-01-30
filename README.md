@@ -14,6 +14,7 @@ pip install threading
 
 # Run
 ## Linux
-```python [scriptname.py]
+```
+python [scriptname.py]
 eg :- python SGPA.py
 ```
