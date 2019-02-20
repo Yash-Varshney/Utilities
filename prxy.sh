@@ -33,8 +33,7 @@ while IFS= read -r cmd; do
 done < ~/.bashrc > ~/.bashrc.t
 mv ~/.bashrc{.t,}
 echo 'export https_proxy=https://gateway.iitmandi.ac.in:8080
-export http_proxy=http://gateway.iitmandi.ac.in:8080
-export all_proxy=http://gateway.iitmandi.ac.in:8080' >> ~/.bashrc
+export http_proxy=http://gateway.iitmandi.ac.in:8080' >> ~/.bashrc
 echo 'Terminal-env proxy configured'
 
 echo '****** Restart Terminal ******'
