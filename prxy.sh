@@ -1,7 +1,7 @@
 #	setting terminal proxy
-echo 'Acquire::http::Proxy "http://gateway.iitmandi.ac.in:8080";
-Acquire::https::Proxy "https://gateway.iitmandi.ac.in:8080";
-Acquire::ftp::Proxy "ftp://gateway.iitmandi.ac.in:8080";' | sudo tee /etc/apt/apt.conf >/dev/null
+echo 'Acquire::http::Proxy "http://gateway.iitmandi.ac.in:8080/";
+Acquire::https::Proxy "https://gateway.iitmandi.ac.in:8080/";
+Acquire::ftp::Proxy "ftp://gateway.iitmandi.ac.in:8080/";' | sudo tee /etc/apt/apt.conf >/dev/null
 echo 'Terminal proxy configured'
 
 #	Setting system proxy
@@ -18,8 +18,8 @@ echo 'System proxy configured'
 #	Git proxy set-up
 X="$(git --version)"
 if [[ ${X:11:1} -eq $2 ]]; then
-	git config --global http.proxy http://gateway.iitmandi.ac.in:8080
-	git config --global https.proxy https://gateway.iitmandi.ac.in:8080
+	git config --global http.proxy http://gateway.iitmandi.ac.in:8080/
+	git config --global https.proxy https://gateway.iitmandi.ac.in:8080/
 	echo 'Git proxy configured'
 fi
 
@@ -32,8 +32,9 @@ while IFS= read -r cmd; do
 	fi
 done < ~/.bashrc > ~/.bashrc.t
 mv ~/.bashrc{.t,}
-echo 'export https_proxy=https://gateway.iitmandi.ac.in:8080
-export http_proxy=http://gateway.iitmandi.ac.in:8080' >> ~/.bashrc
+echo 'export https_proxy=https://gateway.iitmandi.ac.in:8080/
+export http_proxy=http://gateway.iitmandi.ac.in:8080/' >> ~/.bashrc
 echo 'Terminal-env proxy configured'
 
 echo '****** Restart Terminal ******'
+echo "IF still some command dosn't work then try using it with sudo -E" 

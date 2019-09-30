@@ -25,5 +25,4 @@ while IFS= read -r cmd; do
 done < ~/.bashrc > ~/.bashrc.t
 mv ~/.bashrc{.t,}
 echo 'Terminal-env proxy removed'
-
 echo '****** Restart Terminal ******'
