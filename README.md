@@ -2,7 +2,7 @@
 A collection of python scripts that may come in handy in everyday life at IIT Mandi
 
 # CGPA.py
-Prints SGPA for each semester and total CGPA obtianed
+Prints SGPA for each semester and total CGPA obtained
 ## Requirements
 ```
 pip3 install requests
